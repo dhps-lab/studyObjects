@@ -5,7 +5,7 @@
         }
         
         public function searchAllLearningResult($offset){
-            $querySelect = "SELECT * FROM res_resultados_de_aprendizaje LIMIT 12 OFFSET $offset";
+            $querySelect = "SELECT * FROM res_objetos_de_estudio LIMIT 12 OFFSET $offset";
             $request = $this->selectAll($querySelect);
             return $request;
         }

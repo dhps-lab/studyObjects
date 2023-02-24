@@ -1,5 +1,5 @@
-Options All -Indexes
 RewriteEngine on
+Options All -Indexes
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f

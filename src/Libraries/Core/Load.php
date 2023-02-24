@@ -2,7 +2,6 @@
     $controller = ucwords($controller);
     $controllerFile ="./Controllers/".$controller.".php";
 
-    echo "Existe el archivo $controllerFile ? R: ",file_exists($controllerFile);
     if(file_exists($controllerFile)){
         require_once($controllerFile);
         $controller = new $controller();

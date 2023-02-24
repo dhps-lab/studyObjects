@@ -1,7 +1,6 @@
 <?php
     require_once("Config/Config.php");
     require_once("Helpers/Helpers.php");
-    //echo($_GET['url']);
     $url = !empty($_GET['url']) ? $_GET['url'] : 'LearningResult/LearningResult';
     $arrUrl = explode("/", $url);
     $controller = $arrUrl[0];
