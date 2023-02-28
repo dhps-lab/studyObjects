@@ -1,7 +1,7 @@
 
 <?php pageHeader($data);?>
 <?php searchbar($data);?>
-<?php getModal('LearningResultModal', $data);?>
+<?php getModal('StudyObjectModal', $data);?>
 <script>
     var totalPageGeneral = <?= $data['pagination'] - 1; ?>;
 </script>

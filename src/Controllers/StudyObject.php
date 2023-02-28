@@ -1,17 +1,17 @@
 <?php
-    class LearningResult extends Controllers{
+    class StudyObject extends Controllers{
 
         public function __construct(){
             parent::__construct();
         }
 
-        public function LearningResult(string $page){
+        public function StudyObject(string $page){
             $page = intval(strClean($page));
             $data['page_tag'] = 'Resultados de aprendizaje';
             $data['page_title'] = 'Resultados de aprendizaje';
-            $data['pagination'] = ceil($this->getLearningResultAmount()/12);
+            $data['pagination'] = ceil($this->getStudyObjectAmount()/12);
             $data['page_functions_js'] = "functions_learning_result.js";
-            $this->views->getView($this,"LearningResult",$data);
+            $this->views->getView($this,"StudyObject",$data);
         }
 
         public function SearchBar($page){
@@ -22,31 +22,31 @@
             $arrData = "";
             if (empty($words)){
                 echo "Please select a word $words";
-                $arrData = $this->getLearningResult();
+                $arrData = $this->getStudyObject();
             } else {
                 $arrData = $this->model->searchBarQuery($words);
 		$this->printHtmlCode($arrData);
             }
         }
 
-        public function getLearningResultAmount(){
-            $data = $this->model->searchLearningResultAmount();
+        public function getStudyObjectAmount(){
+            $data = $this->model->searchStudyObjectAmount();
             return $data[0]['amount'];
         }
 
-        public function getLearningResult(){
+        public function getStudyObject(){
             $offset = 0;
             if(isset($_POST['pageNumber'])){
                 $offset = intval(strClean($_POST['pageNumber']));
             }
             $offset = $offset * 12;
-            $arrData = $this->model->searchAllLearningResult($offset);
+            $arrData = $this->model->searchAllStudyObject($offset);
             $this->printHtmlCode($arrData);
         }
 
-        public function getLearningResultSelect(){
+        public function getStudyObjectSelect(){
             $htmlOptions = "";
-            $arrData = $this->model->searchAllLearningResultSelect();
+            $arrData = $this->model->searchAllStudyObjectSelect();
             if(count($arrData) > 0){
                 for($i = 0; $i <count($arrData); $i++){
                     $htmlOptions .= '<option value="'.$arrData[$i]['codigo'].'">'.$arrData[$i]['descripcion'].'</option>';
@@ -56,10 +56,10 @@
             die();
         }
 
-        public function getLearningResultById(int $id){
+        public function getStudyObjectById(int $id){
             $id = intval(strClean($id));
             if($id > 0){
-                $arrData = $this->model->searchLearningResultById($id);
+                $arrData = $this->model->searchStudyObjectById($id);
 		$arrData['detalle'] = nl2br($arrData['detalle']);
                 $this->getByIdLRMessage($arrData);
             }

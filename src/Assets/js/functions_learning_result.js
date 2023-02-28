@@ -1,8 +1,9 @@
 var totalPageGeneral;
 function viewMore(button){
-    let idLearningResult = button.getAttribute('lr');
+    let idStudyObject = button.getAttribute('lr');
+    
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'LearningResult/getLearningResultById/' + idLearningResult;
+    let ajaxUrl = base_url+'StudyObject/getStudyObjectById/' + idStudyObject;
     request.open("GET", ajaxUrl, true);
     request.send();
 
@@ -17,7 +18,7 @@ function viewMore(button){
             }
         } 
     }
-    $('#learningResultModal').modal('show');
+    $('#StudyObjectModal').modal('show');
 }
 
 $(searchData(""));
@@ -28,7 +29,7 @@ $(document.getElementById("0").className = "page-item active");
 
 function searchData(query){
     $.ajax({
-        url: " "+base_url+"LearningResult/SearchBar",
+        url: " "+base_url+"StudyObject/SearchBar",
         type: 'POST',
         dataType: 'html',
         data: {query: query},
@@ -37,7 +38,7 @@ function searchData(query){
         $("#show-cards").html(response);
     })
     .fail(function(){
-        console.log("Error searching data");
+        console.error("Error searching data");
     })
 }
 
@@ -57,7 +58,7 @@ $(document).on('keyup', '#inputSearch', function(){
 function changePage(button){
     let pageNumber = button.getAttribute('pageNumber');
     $.ajax({
-        url: " "+base_url+"LearningResult/getLearningResult",
+        url: " "+base_url+"StudyObject/getStudyObject",
         type: 'POST',
         dataType: 'html',
         data: {pageNumber: pageNumber},
