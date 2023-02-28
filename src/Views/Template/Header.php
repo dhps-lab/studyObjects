@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?= baseUrl();?>learningResult">Ver objetos de estudio</a>
+                    <a class="nav-link active" aria-current="page" href="<?= baseUrl();?>studyObject">Ver objetos de estudio</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link" href="<?= baseUrl();?>Statistics">Reportes de objetos de estudio</a>
@@ -31,7 +31,7 @@
                         Modificación de
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="<?= baseUrl();?>EditLearningResult">Agregar objetos de estudio</a></li>
+                        <li><a class="dropdown-item" href="<?= baseUrl();?>EditStudyObject">Agregar objetos de estudio</a></li>
                         <li><a class="dropdown-item" href="<?= baseUrl();?>EditAssignLearningResult">Asignar objetos de estudio</a></li>
                     </ul>
                     </li>

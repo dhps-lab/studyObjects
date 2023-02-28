@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
         	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/EditLearningResult/getLearningResult",
+            "url": " "+base_url+"/EditStudyObject/getStudyObject",
             "dataSrc":""
         },
         "columns":[
@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function(){
         "iDisplayLength": 10
     });
 
-    var dataFormAddLR = document.querySelector("#formAddLearningResult");
-    var dataFormEditLR = document.querySelector("#formEditLearningResult");
+    var dataFormAddLR = document.querySelector("#formAddStudyObject");
+    var dataFormEditLR = document.querySelector("#formEditStudyObject");
 
     dataFormAddLR.onsubmit = function(e){
         e.preventDefault();
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function(){
             swal("Advertencia", "Todos los campos son oblicatorios", "error");
             return false;
         }
-        postPutExecution('EditLearningResult/postLearningResult', dataFormAddLR, '#addLearningResultModal', formAddLearningResult);
+        postPutExecution('EditStudyObject/postStudyObject', dataFormAddLR, '#addStudyObjectModal', formAddStudyObject);
     }
 
     dataFormEditLR.onsubmit = function(e){
@@ -69,18 +69,18 @@ document.addEventListener('DOMContentLoaded', function(){
             swal("Advertencia", "Todos los campos son oblicatorios", "error");
             return false;
         }
-        postPutExecution('EditLearningResult/putLearningResult/' + intCode, dataFormEditLR, '#editLearningResultModal', formEditLearningResult);
+        postPutExecution('EditStudyObject/putStudyObject/' + intCode, dataFormEditLR, '#editStudyObjectModal', formEditStudyObject);
     }
 });
 
-function addLerningResultModal(){
-    $('#addLearningResultModal').modal('show');
+function addStudyObjectModal(){
+    $('#addStudyObjectModal').modal('show');
 }
 
-function editLerningResultModal(button){
-    let idLearningResult = button.getAttribute('lr');
+function editStudyObjectModal(button){
+    let idStudyObject = button.getAttribute('lr');
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'EditLearningResult/getLearningResultById/' + idLearningResult;
+    let ajaxUrl = base_url+'EditStudyObject/getStudyObjectById/' + idStudyObject;
     request.open("GET", ajaxUrl, true);
     request.send();
 
@@ -97,7 +97,7 @@ function editLerningResultModal(button){
         } 
     }
 
-    $('#editLearningResultModal').modal('show');
+    $('#editStudyObjectModal').modal('show');
 }
 
 function postPutExecution(url, dataFormLR, modalName, formModal){
@@ -140,7 +140,7 @@ function deleteExecution(url){
 }
 
 
-function deleteLearningResult(deleteButton){
+function deleteStudyObject(deleteButton){
     let code = deleteButton.getAttribute('lr');
     swal({
         title: "Eliminar resultado de aprendizaje",
@@ -153,7 +153,7 @@ function deleteLearningResult(deleteButton){
         closeOnconfirm: false
     }).then(result => {
         if(result){
-            deleteExecution('EditLearningResult/deleteLearningResult/'+ code);
+            deleteExecution('EditStudyObject/deleteStudyObject/'+ code);
         } else {
             swal("Cancelado", "El resultado de aprendizaje esta ha salvo", "error");
         }

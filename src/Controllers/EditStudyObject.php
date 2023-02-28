@@ -1,56 +1,56 @@
 <?php
-    class EditLearningResult extends Controllers{
+    class EditStudyObject extends Controllers{
 
         public function __construct(){
             parent::__construct();
         }
 
-        public function EditLearningResult(){
-            $data['page_tag'] = "Modificar Resultados de Aprendizaje";
-            $data['page_title'] = "Modificación Resultados de Aprendizaje";
-            $data['page_functions_js'] = "functions_edit_lr.js";
-            $this->views->getView($this,"EditLearningResult",$data);
+        public function EditStudyObject(){
+            $data['page_tag'] = "Modificar Objetos de estudio";
+            $data['page_title'] = "Modificación de Objetos de estudio";
+            $data['page_functions_js'] = "functions_edit_so.js";
+            $this->views->getView($this,"EditStudyObject",$data);
         }
 
-        public function getLearningResult(){
-            $arrData = $this->model->searchAllLearningResult();
+        public function getStudyObject(){
+            $arrData = $this->model->searchAllStudyObject();
             for($i=0; $i<count($arrData); $i++){
                 $arrData[$i]['acciones'] = '<div class="text-center">
-                <button class="btn btn-outline-secondary btn-sm" id="btnEditLR" onclick="editLerningResultModal(this)" title="Editar" lr="'.$arrData[$i]['codigo'].'"><i class="fas fa-pencil-alt"></i></button>
-                <button class="btn btn-outline-danger btn-sm" id="btnDeleteLR" onclick="deleteLearningResult(this) "title="Eliminar" lr="'.$arrData[$i]['codigo'].'"><i class="far fa-trash-alt"></i></button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnEditLR" onclick="editStudyObjectModal(this)" title="Editar" lr="'.$arrData[$i]['codigo'].'"><i class="fas fa-pencil-alt"></i></button>
+                <button class="btn btn-outline-danger btn-sm" id="btnDeleteLR" onclick="deleteStudyObject(this) "title="Eliminar" lr="'.$arrData[$i]['codigo'].'"><i class="far fa-trash-alt"></i></button>
                 </div>';
             };
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
             die();
         }
 
-        public function getLearningResultById(int $idLR){
+        public function getStudyObjectById(int $idLR){
             $id = intval(strClean($idLR));
             if($id > 0){
-                $arrData = $this->model->searchLearningResultById($idLR);
-                $this->getByIdLRMessage($arrData);
+                $arrData = $this->model->searchStudyObjectById($idLR);
+                $this->getByIdSOMessage($arrData);
             }
             die();
         }
 
-        public function postLearningResult(){
+        public function postStudyObject(){
             $code = $this->getLastCode() + 1;
             $name = strClean($_POST['txtNameAdd']);
             $description = strClean($_POST['txtDescriptionAdd']);
-            $data = $this->model->saveLearningResult($code, $name, $description);
-            $this->postPutLRMessage($data);
+            $data = $this->model->saveStudyObject($code, $name, $description);
+            $this->postPutSOMessage($data);
         }
 
-        public function putLearningResult(int $id){
+        public function putStudyObject(int $id){
             $name = strClean($_POST['txtNameEdit']);
             $description = strClean($_POST['txtDescriptionEdit']);
-            $data = $this->model->updateLearningResult($id, $name, $description);
-            $this->postPutLRMessage($data);
+            $data = $this->model->updateStudyObject($id, $name, $description);
+            $this->postPutSOMessage($data);
         }
 
-        public function deleteLearningResult(int $id){
-            $data = $this->model->deleteLearningResult($id);
-            $this->deleteLRMessage($data);
+        public function deleteStudyObject(int $id){
+            $data = $this->model->deleteStudyObject($id);
+            $this->deleteSOMessage($data);
         }
 
         private function getLastCode(){
@@ -58,7 +58,7 @@
             return $data[0]['code'];
         }
 
-        private function postPutLRMessage($arrData){
+        private function postPutSOMessage($arrData){
             $arrResponse = "";
             if($arrData > 0){
                 $arrResponse = array('status' => true, 'msg' => 'Datos procesados correctamente.');
@@ -71,7 +71,7 @@
             die();
         }
 
-        private function getByIdLRMessage($arrData){
+        private function getByIdSOMessage($arrData){
             $arrResponse = "";
             if (empty($arrData)){
                 $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
@@ -83,7 +83,7 @@
             return $arrResponse;
         }
 
-        private function deleteLRMessage($arrData){
+        private function deleteSOMessage($arrData){
             $arrResponse = "";
             if (empty($arrData)){
                 $arrResponse = array('status' => false, 'msg' => 'No es poisble eliminar los datos.');
