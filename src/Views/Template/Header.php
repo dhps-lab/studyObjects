@@ -32,7 +32,7 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="<?= baseUrl();?>EditStudyObject">Agregar objetos de estudio</a></li>
-                        <li><a class="dropdown-item" href="<?= baseUrl();?>EditAssignLearningResult">Asignar objetos de estudio</a></li>
+                        <li><a class="dropdown-item" href="<?= baseUrl();?>EditAssignStudyObject">Asignar objetos de estudio</a></li>
                     </ul>
                     </li>
                 </ul>

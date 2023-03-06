@@ -1,4 +1,4 @@
-<div class="modal fade" id="editAssignLearningResultModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="editAssignStudyObjectModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header headerRegister">
@@ -6,7 +6,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formEditAssingLearningResult" name="formEditAssingLearningResult">
+                <form id="formEditAssingStudyObject" name="formEditAssingStudyObject">
                 <div class="mb-3">
                     <label for="txtIDEdit" class="col-form-label">Código:</label>
                     <input type="text"
@@ -16,8 +16,8 @@
                     disabled>
                 </div>
                 <div class="mb-3">
-                    <label for="listEditLearningResult" class="col-form-label">Resultado de aprendizaje:</label>
-                    <select class="form-select" id="listEditLearningResult" name="listEditLearningResult"></select>
+                    <label for="listEditStudyObject" class="col-form-label">Resultado de aprendizaje:</label>
+                    <select class="form-select" id="listEditStudyObject" name="listEditStudyObject"></select>
                 </div>
                 <div class="mb-3">
                     <label for="listEditTeacher" class="col-form-label">Docente:</label>

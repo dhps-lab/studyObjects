@@ -1,46 +1,46 @@
 <?php
-    class EditAssignLearningResult extends Controllers{
+    class EditAssignStudyObject extends Controllers{
         public function __construct(){
             parent::__construct();
         }
 
-        public function EditAssignLearningResult(){
-            $data['page_tag'] = "Modificar Asignación de Resultados de Aprendizaje";
-            $data['page_title'] = "Modificación Asignación de Resultados de Aprendizaje";
-            $data['page_functions_js'] = "functions_assign_lr.js";
-            $this->views->getView($this,"EditAssignLearningResult",$data);
+        public function EditAssignStudyObject(){
+            $data['page_tag'] = "Modificar Asignación de Objetos de Estudio";
+            $data['page_title'] = "Modificación Asignación de Objetos de Estudio";
+            $data['page_functions_js'] = "functions_assign_so.js";
+            $this->views->getView($this,"EditAssignStudyObject",$data);
         }
 
-        public function getAssignLearningResultById(int $idALR){
+        public function getAssignStudyObjectById(int $idALR){
             $id = intval(strClean($idALR));
             if($id > 0){
-                $arrData = $this->model->searchAssignLearningResultById($idALR);
+                $arrData = $this->model->searchAssignStudyObjectById($idALR);
                 $this->getByIdALRMessage($arrData);
             }
             die();
         }
 
-        public function getAssignLearningResult(){
-            $arrData = $this->model->searchAssignLearningResult();
+        public function getAssignStudyObject(){
+            $arrData = $this->model->searchAssignStudyObject();
             for($i=0; $i<count($arrData); $i++){
                 $arrData[$i]['acciones'] = '<div class="text-center">
-                <button class="btn btn-outline-secondary btn-sm" id="btnEditLR" onclick="editAssignLerningResultModal(this)" title="Editar" alr="'.$arrData[$i]['id'].'"><i class="fas fa-pencil-alt"></i></button>
-                <button class="btn btn-outline-danger btn-sm" id="btnDeleteLR" onclick="deleteAssignLearningResult(this) "title="Eliminar" alr="'.$arrData[$i]['id'].'"><i class="far fa-trash-alt"></i></button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnEditSO" onclick="editAssignStudyObjectModal(this)" title="Editar" alr="'.$arrData[$i]['id'].'"><i class="fas fa-pencil-alt"></i></button>
+                <button class="btn btn-outline-danger btn-sm" id="btnDeleteSO" onclick="deleteAssignStudyObject(this) "title="Eliminar" alr="'.$arrData[$i]['id'].'"><i class="far fa-trash-alt"></i></button>
                 </div>';
             };
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
             die();
         }
 
-        public function postAssignLearningResult(){
+        public function postAssignStudyObject(){
             if($_POST){
-                if(empty($_POST['listLearningResult']) || empty($_POST['listTeacher']) || empty($_POST['listSubject'])){
+                if(empty($_POST['listStudyObject']) || empty($_POST['listTeacher']) || empty($_POST['listSubject'])){
                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
                 } else {
-                    $intLearningResult = intval(strClean($_POST['listLearningResult']));
+                    $intStudyObject = intval(strClean($_POST['listStudyObject']));
                     $intTeacher = intval(strClean($_POST['listTeacher']));
                     $intSubject = intval(strClean($_POST['listSubject']));
-                    $requestALR = $this->model->saveAssignLearningResult($intTeacher, $intSubject, $intLearningResult);
+                    $requestALR = $this->model->saveAssignStudyObject($intTeacher, $intSubject, $intStudyObject);
                     $arrResponse = $this->postPutAssignLRMessage($requestALR);
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
@@ -48,22 +48,22 @@
             die();
         }
 
-        public function putAssignLearningResult(int $intId){
-            $intLearningResult = intval(strClean($_POST['listEditLearningResult']));
+        public function putAssignStudyObject(int $intId){
+            $intStudyObject = intval(strClean($_POST['listEditStudyObject']));
             $intTeacher = intval(strClean($_POST['listEditTeacher']));
             $intSubject = intval(strClean($_POST['listEditSubject']));
-            $requestALR = $this->model->updateAssignLearningResult($intTeacher, $intSubject, $intLearningResult, $intId);
+            $requestALR = $this->model->updateAssignStudyObject($intTeacher, $intSubject, $intStudyObject, $intId);
             $arrResponse = $this->postPutAssignLRMessage($requestALR);
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             die();
         }
 
-        public function deleteAssignLearningResult($id){
-            $data = $this->model->deleteAssignLearningResult($id);
-            $this->deleteAssignLRMessage($data);
+        public function deleteAssignStudyObject($id){
+            $data = $this->model->deleteAssignStudyObject($id);
+            $this->deleteAssignSOMessage($data);
         }
 
-        private function getByIdALRMessage($arrData){
+        private function getByIdASOMessage($arrData){
             $arrResponse = "";
             if (empty($arrData)){
                 $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
@@ -75,7 +75,7 @@
             return $arrResponse;
         }
 
-        private function postPutAssignLRMessage($arrData){
+        private function postPutAssignSOMessage($arrData){
             $arrResponse = "";
             if($arrData > 0){
                 $arrResponse = array('status' => true, 'msg' => 'Datos procesados correctamente.');
@@ -87,7 +87,7 @@
             return $arrResponse;
         }
 
-        private function deleteAssignLRMessage($arrData){
+        private function deleteAssignSOMessage($arrData){
             $arrResponse = "";
             if (empty($arrData)){
                 $arrResponse = array('status' => false, 'msg' => 'No es poisble eliminar los datos.');

@@ -1,19 +1,19 @@
-var assignLearningResultTable;
+var assignStudyObjectTable;
 
 document.addEventListener('DOMContentLoaded', function(){
-    assignLearningResultTable = $('#assignLRTable').DataTable({
+    assignStudyObjectTable = $('#assignSOTable').DataTable({
         "aProcessing":true,
 		"aServerSide":true,
         "language": {
         	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/EditAssignLearningResult/getAssignLearningResult",
+            "url": " "+base_url+"/EditAssignStudyObject/getAssignStudyObject",
             "dataSrc":""
         },
         "columns":[
             {"data":"id"},
-            {"data":"learning_result"},
+            {"data":"study_object"},
             {"data":"teacher_firstname"},
             {"data":"teacher_lastname"},
             {"data":"subject"},
@@ -48,46 +48,46 @@ document.addEventListener('DOMContentLoaded', function(){
         "iDisplayLength": 10
     });
 
-    var dataFormAddAssignLR = document.querySelector("#formAddAssingLearningResult");
-    var dataFormEditAssignLR = document.querySelector("#formEditAssingLearningResult");
+    var dataFormAddAssignSO = document.querySelector("#formAddAssingStudyObject");
+    var dataFormEditAssignSO = document.querySelector("#formEditAssingStudyObject");
 
-    dataFormAddAssignLR.onsubmit = function(e){
+    dataFormAddAssignSO.onsubmit = function(e){
         e.preventDefault();
-        var intLearningResult = document.querySelector("#listLearningResult").value;
+        var intStudyObject = document.querySelector("#listStudyObject").value;
         var intTeacher = document.querySelector("#listTeacher").value;
         var intSubject = document.querySelector("#listSubject").value;
-        if(intLearningResult == "" || intTeacher == "" || intSubject == ""){
+        if(intStudyObject == "" || intTeacher == "" || intSubject == ""){
             swal("Advertencia", "Todos los campos son oblicatorios", "error");
             return false;
         }
-        postPutExecution('EditAssignLearningResult/postAssignLearningResult', dataFormAddAssignLR, '#addAssignLearningResultModal', formAddAssingLearningResult);
+        postPutExecution('EditAssignStudyObject/postAssignStudyObject', dataFormAddAssignSO, '#addAssignStudyObjectModal', formAddAssingStudyObject);
     }
 
-    dataFormEditAssignLR.onsubmit = function(e){
+    dataFormEditAssignSO.onsubmit = function(e){
         e.preventDefault();
         var intCode = document.querySelector("#txtIDEdit").value;
-        var intLearningResult = document.querySelector("#listEditLearningResult").value;
+        var intStudyObject = document.querySelector("#listEditStudyObject").value;
         var intTeacher = document.querySelector("#listEditTeacher").value;
         var intSubject = document.querySelector("#listEditSubject").value;
-        if(intCode == "" || intLearningResult == "" || intTeacher == "" || intSubject == ""){
+        if(intCode == "" || intStudyObject == "" || intTeacher == "" || intSubject == ""){
             swal("Advertencia", "Todos los campos son oblicatorios", "error");
             return false;
         }
-        postPutExecution('EditAssignLearningResult/putAssignLearningResult/' + intCode, dataFormEditAssignLR, '#editAssignLearningResultModal', formEditAssingLearningResult);
+        postPutExecution('EditAssignStudyObject/putAssignStudyObject/' + intCode, dataFormEditAssignSO, '#editAssignStudyObjectModal', formEditAssingStudyObject);
     }
 });
 
-function addAssingLerningResultModal(){
-    getSelect("LearningResult/getLearningResultSelect", "#listLearningResult", 0);
+function addAssingStudyObjectModal(){
+    getSelect("StudyObject/getStudyObjectSelect", "#listStudyObject", 0);
     getSelect("Teacher/getTeacher", "#listTeacher", 0); 
     getSelect("Subject/getSubject", "#listSubject", 0);
-    $('#addAssignLearningResultModal').modal('show');
+    $('#addAssignStudyObjectModal').modal('show');
 }
 
-function editAssignLerningResultModal(button){
-    let idAssignLearningResult = button.getAttribute('alr');
+function editAssignStudyObjectModal(button){
+    let idAssignStudyObject = button.getAttribute('alr');
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'EditAssignLearningResult/getAssignLearningResultById/' + idAssignLearningResult;
+    let ajaxUrl = base_url+'EditAssignStudyObject/getAssignStudyObjectById/' + idAssignStudyObject;
     request.open("GET", ajaxUrl, true);
     request.send();
 
@@ -96,7 +96,7 @@ function editAssignLerningResultModal(button){
             let objData = JSON.parse(request.responseText);
             if(objData.status){
                 document.querySelector("#txtIDEdit").value = objData.msg.id;
-                getSelect("LearningResult/getLearningResultSelect", "#listEditLearningResult", objData.msg.codigo_resultados);
+                getSelect("StudyObject/getStudyObjectSelect", "#listEditStudyObject", objData.msg.codigo_resultados);
                 getSelect("Teacher/getTeacher", "#listEditTeacher", objData.msg.codigo_profesor);
                 getSelect("Subject/getSubject", "#listEditSubject", objData.msg.codigo_espacio);
             } else {
@@ -105,13 +105,13 @@ function editAssignLerningResultModal(button){
         } 
     }
 
-    $('#editAssignLearningResultModal').modal('show');
+    $('#editAssignStudyObjectModal').modal('show');
 }
 
-function postPutExecution(url, dataFormALR, modalName, formModal){
+function postPutExecution(url, dataFormASO, modalName, formModal){
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_url+url;
-    let formData = new FormData(dataFormALR);
+    let formData = new FormData(dataFormASO);
     request.open('POST', ajaxUrl, true);
         request.send(formData);
         request.onreadystatechange = function(){
@@ -121,7 +121,7 @@ function postPutExecution(url, dataFormALR, modalName, formModal){
                     $(modalName).modal("hide");
                     formModal.reset();
                     swal("Asignación resultados de aprendizaje", objData.msg, "success");
-                    assignLearningResultTable.ajax.reload();
+                    assignStudyObjectTable.ajax.reload();
                 } else {
                     swal("Error", objData.msg, "error");
                 }
@@ -139,7 +139,7 @@ function deleteExecution(url){
                 let objData = JSON.parse(request.responseText);
                 if(objData.status){
                     swal("¡Eliminado!", objData.msg, "success");
-                    assignLearningResultTable.ajax.reload();
+                    assignStudyObjectTable.ajax.reload();
                 } else {
                     swal("Cancelado", objData.msg, "error");
                 }
@@ -147,7 +147,7 @@ function deleteExecution(url){
         }
 }
 
-function deleteAssignLearningResult(deleteButton){
+function deleteAssignStudyObject(deleteButton){
     let code = deleteButton.getAttribute('alr');
     swal({
         title: "Eliminar asignación de resultado de aprendizaje",
@@ -160,7 +160,7 @@ function deleteAssignLearningResult(deleteButton){
         closeOnconfirm: false
     }).then(result => {
         if(result){
-            deleteExecution('EditAssignLearningResult/deleteAssignLearningResult/'+ code);
+            deleteExecution('EditAssignStudyObject/deleteAssignStudyObject/'+ code);
         } else {
             swal("Cancelado", "El resultado de aprendizaje esta ha salvo", "error");
         }
