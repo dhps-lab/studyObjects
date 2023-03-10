@@ -1,6 +1,6 @@
 </content>
     <footer class="mt-auto align-items-center">
-            <p class="text-center text-muted">Universidad Distrital Francisco José de Caldas © 2022</p>
+            <p class="text-center text-muted">Universidad Distrital Francisco José de Caldas © 2023</p>
     </footer>
     <script>const base_url = "<?= baseUrl(); ?>"</script>
     <script src="<?= media(); ?>/js/fontawesome.js"></script>

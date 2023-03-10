@@ -10,8 +10,8 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-secondary shadow">
                         <div class="inner">
-                            <h3><?= $data['amount_learning_result'];?></h3>
-                            <p>Resultados de aprendizaje</p>
+                            <h3><?= $data['amount_study_object'];?></h3>
+                            <p>Objetos de estudio</p>
                         </div>
                         <div class="icon">
                             <i class="fa fa-solid fa-graduation-cap fa-3x"></i>
@@ -43,7 +43,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning shadow">
                         <div class="inner">
-                            <h3><?= $data['amount_assign_learning_result'];?></h3>
+                            <h3><?= $data['amount_assign_study_object'];?></h3>
                             <p>Asignaciones</p>
                         </div>
                         <div class="icon">
@@ -60,7 +60,7 @@
                 <div class="col-6">
                     <div class="card">
                         <div class="card-body">
-                            <div id="LR_component"></div>
+                            <div id="SO_component"></div>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div id="LR_teacher_subject"></div>
+                            <div id="SO_teacher_subject"></div>
                         </div>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <div id="LR_component_subject"></div>
+                            <div id="SO_component_subject"></div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +124,7 @@
         })
     });
 
-    Highcharts.chart('LR_component', {
+    Highcharts.chart('SO_component', {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -132,7 +132,7 @@
             type: 'pie'
         },
         title: {
-            text: 'Resultados de aprendizaje asignados por componente'
+            text: 'Objetos de estudio asignados por componente'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -154,9 +154,9 @@
             }
         },
         series: [{
-            name: 'Resaultados de aprendizaje',
+            name: 'Objetos de estudio',
             data: [
-                <?php foreach($data['learning_result_component'] as $value){
+                <?php foreach($data['study_object_component'] as $value){
                     echo "{name:'".$value['nombre']."',y:".$value['amount']."},";
                 } ?>
             ]
@@ -211,7 +211,7 @@
 </script>
 
 <script>
-    Highcharts.chart('LR_teacher_subject', {
+    Highcharts.chart('SO_teacher_subject', {
         chart: {
             type: 'spline'
         },
@@ -219,7 +219,7 @@
             text: 'Resultados de aprendizaje - Docentes y Asignaturas'
         },
         xAxis: {
-            categories: [<?php foreach($data['learning_result_teacher_subject'] as $value){
+            categories: [<?php foreach($data['study_object_teacher_subject'] as $value){
                         echo "'".$value['descripcion']."',";
                     } ?>]
         },
@@ -245,7 +245,7 @@
             marker: {
                 symbol: 'square'
             },
-            data: [<?php foreach($data['learning_result_teacher_subject'] as $value){
+            data: [<?php foreach($data['study_object_teacher_subject'] as $value){
                         echo $value['amount_subject'].",";
                     } ?>]
 
@@ -254,7 +254,7 @@
             marker: {
                 symbol: 'diamond'
             },
-            data: [<?php foreach($data['learning_result_teacher_subject'] as $value){
+            data: [<?php foreach($data['study_object_teacher_subject'] as $value){
                         echo $value['amount_teacher'].",";
                     } ?>]
         }]
@@ -265,13 +265,13 @@
 <script>
         // Data retrieved from https://gs.statcounter.com/browser-market-share#monthly-202201-202201-bar
     // Create the chart
-    Highcharts.chart('LR_component_subject', {
+    Highcharts.chart('SO_component_subject', {
         chart: {
             type: 'column'
         },
         title: {
             align: 'left',
-            text: 'Resultados de aprendizaje asignados, distribuidos en componentes y asignaturas'
+            text: 'Objetos de estudio asignados, distribuidos en componentes y asignaturas'
         },
         accessibility: {
             announceNewData: {
@@ -283,7 +283,7 @@
         },
         yAxis: {
             title: {
-                text: 'Total resultados de aprendizaje'
+                text: 'Total objetos de estudio'
             }
 
         },
@@ -310,7 +310,7 @@
                 name: "Browsers",
                 colorByPoint: true,
                 data: [
-                    <?php foreach($data['learning_result_component'] as $value){
+                    <?php foreach($data['study_object_component'] as $value){
                         echo "{name:'".$value['nombre']."',y:".$value['amount'].",drilldown: '".$value['nombre']."'},";
                     } ?>
                 ]
@@ -323,9 +323,9 @@
                 }
             },
             series: [
-                    <?php foreach($data['learning_result_component'] as $value){
+                    <?php foreach($data['study_object_component'] as $value){
                         echo "{name:'".$value['nombre']."',id:'".$value['nombre']."', data:[";
-                        foreach($data['learning_result_subject_component'] as $key=>$valueComp){
+                        foreach($data['study_object_subject_component'] as $key=>$valueComp){
                             if($valueComp['compo'] == $value['nombre']){
                                 echo "['".$valueComp['nombre']."',".$valueComp['amount']."],";
                             }
