@@ -11,8 +11,8 @@ function viewMore(button){
         if(request.readyState == 4 && request.status == 200){
             let objData = JSON.parse(request.responseText);
             if(objData.status){
-                document.querySelector("#titleLRModal").innerHTML = objData.msg.descripcion;
-                document.querySelector("#descriptionLRModal").innerHTML = objData.msg.detalle;
+                document.querySelector("#titleSOModal").innerHTML = objData.msg.descripcion;
+                document.querySelector("#descriptionSOModal").innerHTML = objData.msg.detalle;
             } else {
                 swal("Error", objData.msg, "error");
             }

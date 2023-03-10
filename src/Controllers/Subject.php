@@ -4,11 +4,12 @@
             parent::__construct();
         }
 
-        public function Subject(int $codeLR){
-            $data['page_tag'] = $this->getLRTitleById($codeLR);
-            $data['page_title'] = $this->getLRTitleById($codeLR);
-            $data['page_functions_js'] = "functions_subjects_lr.js";
+        public function Subject(int $codeSO){
+            $data['page_tag'] = $this->getSOTitleById($codeSO);
+            $data['page_title'] = $this->getSOTitleById($codeSO);
+            $data['page_functions_js'] = "functions_subjects_so.js";
             $this->views->getView($this,"Subject",$data);
+            echo 'load';
         }
 
         public function getSubject(){
@@ -23,13 +24,13 @@
             die();
         }
 
-	public function getLRTitleById(int $codeLR){
-            $data = $this->model->searchLRTitleById($codeLR);
+	public function getSOTitleById(int $codeSO){
+            $data = $this->model->searchSOTitleById($codeSO);
             return $data['descripcion'];
         }
 
-        public function getSubjectById(int $codeLR){
-            $arrData = $this->model->searchAllSubjectByLR($codeLR);
+        public function getSubjectById(int $codeSO){
+            $arrData = $this->model->searchAllSubjectBySO($codeSO);
             echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
 	    die();
         }

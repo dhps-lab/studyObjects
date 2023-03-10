@@ -1,11 +1,11 @@
-var assignLearningResultTable;
+var assignStudyObjectTable;
 
 document.addEventListener('DOMContentLoaded', function(){
     let load = window.location.href;
     let arr = load.split("/");
     let lastItem = arr[arr.length-1];
 
-    assignLearningResultTable = $('#subjectLRTable').DataTable({
+    assignStudyObjectTable = $('#subjectSOTable').DataTable({
         "aProcessing":true,
         "aServerSide":true,
         "language": {

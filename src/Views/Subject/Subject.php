@@ -12,7 +12,7 @@
                 <div class="tile">
                     <div class="tile-body">
                     <div class="table-responsive">
-                        <table class="table table-hover table-centered table-bordered mb-0" id="subjectLRTable" style="width:100%">
+                        <table class="table table-hover table-centered table-bordered mb-0" id="subjectSOTable" style="width:100%">
                         <thead>
                             <tr>
                             <th>Id asignatura</th>
