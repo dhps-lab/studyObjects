@@ -11,11 +11,11 @@
             $this->views->getView($this,"EditAssignStudyObject",$data);
         }
 
-        public function getAssignStudyObjectById(int $idALR){
-            $id = intval(strClean($idALR));
+        public function getAssignStudyObjectById(int $idASO){
+            $id = intval(strClean($idASO));
             if($id > 0){
-                $arrData = $this->model->searchAssignStudyObjectById($idALR);
-                $this->getByIdALRMessage($arrData);
+                $arrData = $this->model->searchAssignStudyObjectById($idASO);
+                $this->getByIdASOMessage($arrData);
             }
             die();
         }
@@ -40,8 +40,8 @@
                     $intStudyObject = intval(strClean($_POST['listStudyObject']));
                     $intTeacher = intval(strClean($_POST['listTeacher']));
                     $intSubject = intval(strClean($_POST['listSubject']));
-                    $requestALR = $this->model->saveAssignStudyObject($intTeacher, $intSubject, $intStudyObject);
-                    $arrResponse = $this->postPutAssignLRMessage($requestALR);
+                    $requestASO = $this->model->saveAssignStudyObject($intTeacher, $intSubject, $intStudyObject);
+                    $arrResponse = $this->postPutAssignSOMessage($requestASO);
                 }
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             }
@@ -52,8 +52,8 @@
             $intStudyObject = intval(strClean($_POST['listEditStudyObject']));
             $intTeacher = intval(strClean($_POST['listEditTeacher']));
             $intSubject = intval(strClean($_POST['listEditSubject']));
-            $requestALR = $this->model->updateAssignStudyObject($intTeacher, $intSubject, $intStudyObject, $intId);
-            $arrResponse = $this->postPutAssignLRMessage($requestALR);
+            $requestASO = $this->model->updateAssignStudyObject($intTeacher, $intSubject, $intStudyObject, $intId);
+            $arrResponse = $this->postPutAssignSOMessage($requestASO);
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             die();
         }
@@ -92,7 +92,7 @@
             if (empty($arrData)){
                 $arrResponse = array('status' => false, 'msg' => 'No es poisble eliminar los datos.');
             } else {
-                $arrResponse = array('status' => true, 'msg' => 'El resultado de aprendizaje ha sido eliminado');
+                $arrResponse = array('status' => true, 'msg' => 'El objeto de estudio ha sido eliminado');
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 

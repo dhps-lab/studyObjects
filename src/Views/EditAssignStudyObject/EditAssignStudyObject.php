@@ -18,7 +18,7 @@
                       <thead>
                         <tr>
                           <th>Id</th>
-                          <th>Resultado de aprendizaje</th>
+                          <th>Objeto de estudio</th>
                           <th>Nombre docente</th>
                           <th>Apellido docente</th>
                           <th>Espacio académico</th>

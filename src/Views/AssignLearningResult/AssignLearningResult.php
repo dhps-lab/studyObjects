@@ -7,6 +7,6 @@
     <title><?php echo $data['tag_page']; ?></title>
 </head>
 <body>
-    <h1>Bienvenidos a Assing learning result</h1>
+    <h1>Bienvenidos a Asingar objetos de estudio</h1>
 </body>
 </html>

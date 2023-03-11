@@ -24,14 +24,14 @@
         }
 
         public function saveAssignStudyObject(int $codeTeacher, int $codeSubject, int $codeStudyObject){
-            $queryInsert = "INSERT INTO res_asignacion_objetos_de_estudio(codigo_profesor,codigo_espacio,codigo_resultados) VALUES(?,?,?)";
+            $queryInsert = "INSERT INTO res_asignacion_objetos_de_estudio(codigo_profesor,codigo_espacio,codigo_objetos_de_estudio) VALUES(?,?,?)";
             $arrData = array($codeTeacher, $codeSubject, $codeStudyObject);
             $resInsert = $this->insert($queryInsert, $arrData);
             return $resInsert;
         }
 
         public function updateAssignStudyObject(int $intTeacher, int $intSubject, int $intStudyObject, int $intId){
-            $queryUpdate = "UPDATE res_asignacion_objetos_de_estudio SET codigo_profesor = ?, codigo_espacio = ?, codigo_resultados = ? WHERE id = ?";
+            $queryUpdate = "UPDATE res_asignacion_objetos_de_estudio SET codigo_profesor = ?, codigo_espacio = ?, codigo_objetos_de_estudio = ? WHERE id = ?";
             $arrData = array($intTeacher, $intSubject, $intStudyObject, $intId);
             $request = $this->update($queryUpdate, $arrData);
             return $request;

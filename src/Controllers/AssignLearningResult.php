@@ -1,24 +1,24 @@
 <?php
-    class AssignLearningResult extends Controllers{
+    class AssignStudyObject extends Controllers{
         public function __construct(){
             parent::__construct();
         }
 
-        public function getAssignLearningResultById($id){
-            $data = $this->model->searchAssignLearningResultById($id);
+        public function getAssignStudyObjectById($id){
+            $data = $this->model->searchAssignStudyObjectById($id);
         }
 
-        public function postLearningResult($codeTeacher, $codeAcademicArea, $codeLearningResult){
-            $data = $this->model->saveAssignLearningResult($teacherCode, $codeAcademicArea, $codeLearningResult);
+        public function postStudyObject($codeTeacher, $codeAcademicArea, $codeStudyObject){
+            $data = $this->model->saveAssignStudyObject($teacherCode, $codeAcademicArea, $codeStudyObject);
         }
 
-        public function putAssignLearningResult($codeTeacher, $codeAcademicArea, $codeLearningResult, $id){
-            $arrData = array($codeTeacher, $codeAcademicArea, $codeLearningResult, $id);
-            $data = $this->model->updateAssignLearningResult($arrData);
+        public function putAssignStudyObject($codeTeacher, $codeAcademicArea, $codeStudyObject, $id){
+            $arrData = array($codeTeacher, $codeAcademicArea, $codeStudyObject, $id);
+            $data = $this->model->updateAssignStudyObject($arrData);
         }
 
-        public function deleteAssignLearningResult($id){
-            $data = $this->model->deleteAssignLearningResult($id);
+        public function deleteAssignStudyObject($id){
+            $data = $this->model->deleteAssignStudyObject($id);
         }
     }
 ?>

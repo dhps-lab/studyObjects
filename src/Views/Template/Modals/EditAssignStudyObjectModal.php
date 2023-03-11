@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header headerRegister">
-                <h5 class="modal-title">Editar asignación de un resultado de aprendizaje</h5>
+                <h5 class="modal-title">Editar asignación de un objeto de estudio</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -16,7 +16,7 @@
                     disabled>
                 </div>
                 <div class="mb-3">
-                    <label for="listEditStudyObject" class="col-form-label">Resultado de aprendizaje:</label>
+                    <label for="listEditStudyObject" class="col-form-label">Objeto de estudio:</label>
                     <select class="form-select" id="listEditStudyObject" name="listEditStudyObject"></select>
                 </div>
                 <div class="mb-3">
