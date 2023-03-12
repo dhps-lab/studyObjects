@@ -95,8 +95,8 @@ function editAssignStudyObjectModal(button){
         if(request.readyState == 4 && request.status == 200){
             let objData = JSON.parse(request.responseText);
             if(objData.status){
-                document.querySelector("#txtIDEdit").value = objData.msg.id;
-                getSelect("StudyObject/getStudyObjectSelect", "#listEditStudyObject", objData.msg.codigo_resultados);
+                document.querySelector("#txtIDEdit").value = objData.msg.Id;
+                getSelect("StudyObject/getStudyObjectSelect", "#listEditStudyObject", objData.msg.codigo_objetos_de_estudio);
                 getSelect("Teacher/getTeacher", "#listEditTeacher", objData.msg.codigo_profesor);
                 getSelect("Subject/getSubject", "#listEditSubject", objData.msg.codigo_espacio);
             } else {

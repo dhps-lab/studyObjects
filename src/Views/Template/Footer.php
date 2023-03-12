@@ -16,7 +16,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://unpkg.com/@jarstone/dselect/dist/js/dselect.js"></script> 
-    <? echo "THIS IS DE media(): ".media();?>
     
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js']; ?>"></script>
 </body>
