@@ -25,7 +25,7 @@
                 $arrData = $this->getStudyObject();
             } else {
                 $arrData = $this->model->searchBarQuery($words);
-		$this->printHtmlCode($arrData);
+		        $this->printHtmlCode($arrData);
             }
         }
 
@@ -107,6 +107,7 @@
                 $response.='No se encontrados resulados que coincidan con su b&uacutesqueda';
             }
             echo $response;
+            return $response;
         }
     }
 ?>

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function(){
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/Subject/getSubjectById/" + lastItem,
+            "url": " "+base_back+"/Subject/getSubjectById/" + lastItem,
             "dataSrc":""
         },
         "columns":[

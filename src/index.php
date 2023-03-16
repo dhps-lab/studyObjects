@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
     require_once("Config/Config.php");
     require_once("Helpers/Helpers.php");
     $url = !empty($_GET['url']) ? $_GET['url'] : 'StudyObject/StudyObject';

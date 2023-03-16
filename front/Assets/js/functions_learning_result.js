@@ -3,7 +3,7 @@ function viewMore(button){
     let idStudyObject = button.getAttribute('lr');
     
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'StudyObject/getStudyObjectById/' + idStudyObject;
+    let ajaxUrl = base_back+'StudyObject/getStudyObjectById/' + idStudyObject;
     request.open("GET", ajaxUrl, true);
     request.send();
 
