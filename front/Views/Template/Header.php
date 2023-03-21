@@ -35,12 +35,10 @@
                         <li><a class="dropdown-item" href="<?= baseUrl();?>EditAssignStudyObject">Asignar objetos de estudio</a></li>
                     </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link right" href="">Iniciar Sesión</a>
-                    </li>
                 </ul>
             </div>
         </div>
+        <a class="nav-link active" onclick="loginModal()" role="button">Iniciar Sesión</a>
     </nav>
     <content>
     

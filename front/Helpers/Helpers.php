@@ -15,6 +15,7 @@
     function pageHeader($data=""){
         $viewHeader = "Views/Template/Header.php";
         require_once($viewHeader);
+        getLogin();
     }
 
     function footer($data=""){
@@ -30,6 +31,15 @@
     function getModal(string $nameModal, $data){
         $viewModal = "Views/Template/Modals/{$nameModal}.php";
         require_once($viewModal);
+    }
+
+    function getLogin($data=false){
+        if(!$data){
+            getModal("LogIn","");
+        }else{
+            $logOfModal = 'Views/Template/Modal/LogOf.php';
+            require_once($logOfModal);
+        }
     }
 
     function strClean($strChain){

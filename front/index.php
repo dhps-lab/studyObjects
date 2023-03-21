@@ -3,7 +3,6 @@
     require_once("Helpers/Helpers.php");
     $url = !empty($_GET['url']) ? $_GET['url'] : 'StudyObject/StudyObject';
     $arrUrl = explode("/", $url);
-    echo 'Sale el: '.$_GET['url'];
     $controller = $arrUrl[0];
     $method = $arrUrl[0];
     $params = "";
