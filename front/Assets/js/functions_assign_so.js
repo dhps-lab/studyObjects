@@ -120,7 +120,7 @@ function postPutExecution(url, dataFormASO, modalName, formModal){
                 if(objData.status){
                     $(modalName).modal("hide");
                     formModal.reset();
-                    swal("Asignación resultados de aprendizaje", objData.msg, "success");
+                    swal("Asignación objetos de estudio", objData.msg, "success");
                     assignStudyObjectTable.ajax.reload();
                 } else {
                     swal("Error", objData.msg, "error");
@@ -150,7 +150,7 @@ function deleteExecution(url){
 function deleteAssignStudyObject(deleteButton){
     let code = deleteButton.getAttribute('alr');
     swal({
-        title: "Eliminar asignación de resultado de aprendizaje",
+        title: "Eliminar asignación de objeto de estudio",
         text: "¿Realmente quiere eliminar la asignación?",
         icon: "warning",
         buttons: {
@@ -162,7 +162,7 @@ function deleteAssignStudyObject(deleteButton){
         if(result){
             deleteExecution('EditAssignStudyObject/deleteAssignStudyObject/'+ code);
         } else {
-            swal("Cancelado", "El resultado de aprendizaje esta ha salvo", "error");
+            swal("Cancelado", "El objeto de estudio esta ha salvo", "error");
         }
         
     });

@@ -112,7 +112,7 @@ function postPutExecution(url, dataFormLR, modalName, formModal){
                 if(objData.status){
                     $(modalName).modal("hide");
                     formModal.reset();
-                    swal("Resultados de aprendizaje", objData.msg, "success");
+                    swal("Objeto de estudio", objData.msg, "success");
                     learningResultTable.ajax.reload();
                 } else {
                     swal("Error", objData.msg, "error");
@@ -143,8 +143,8 @@ function deleteExecution(url){
 function deleteStudyObject(deleteButton){
     let code = deleteButton.getAttribute('lr');
     swal({
-        title: "Eliminar resultado de aprendizaje",
-        text: "¿Realmente quiere eliminar el resultado de aprendizaje?",
+        title: "Eliminar objeto de estudio",
+        text: "¿Realmente quiere eliminar el objeto de estudio?",
         icon: "warning",
         buttons: {
             cancel: "¡No, cancelar!",
@@ -155,7 +155,7 @@ function deleteStudyObject(deleteButton){
         if(result){
             deleteExecution('EditStudyObject/deleteStudyObject/'+ code);
         } else {
-            swal("Cancelado", "El resultado de aprendizaje esta ha salvo", "error");
+            swal("Cancelado", "El objeto de estudio esta ha salvo", "error");
         }
         
     });
