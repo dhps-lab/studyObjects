@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
         	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/EditAssignStudyObject/getAssignStudyObject",
+            "url": " "+base_back+"/EditAssignStudyObject/getAssignStudyObject",
             "dataSrc":""
         },
         "columns":[
@@ -87,7 +87,7 @@ function addAssingStudyObjectModal(){
 function editAssignStudyObjectModal(button){
     let idAssignStudyObject = button.getAttribute('alr');
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'EditAssignStudyObject/getAssignStudyObjectById/' + idAssignStudyObject;
+    let ajaxUrl = base_back+'EditAssignStudyObject/getAssignStudyObjectById/' + idAssignStudyObject;
     request.open("GET", ajaxUrl, true);
     request.send();
 
@@ -110,7 +110,7 @@ function editAssignStudyObjectModal(button){
 
 function postPutExecution(url, dataFormASO, modalName, formModal){
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+url;
+    let ajaxUrl = base_back+url;
     let formData = new FormData(dataFormASO);
     request.open('POST', ajaxUrl, true);
         request.send(formData);
@@ -131,7 +131,7 @@ function postPutExecution(url, dataFormASO, modalName, formModal){
 
 function deleteExecution(url){
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+url;
+    let ajaxUrl = base_back+url;
     request.open('POST', ajaxUrl, true);
         request.send();
         request.onreadystatechange = function(){
@@ -169,7 +169,7 @@ function deleteAssignStudyObject(deleteButton){
 }
 
 function getSelect(url, selector, code){
-    let ajaxUrl = base_url+url;
+    let ajaxUrl = base_back+url;
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     request.open("GET", ajaxUrl, true);
     request.send();

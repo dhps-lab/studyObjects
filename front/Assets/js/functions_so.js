@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function(){
         	"url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         },
         "ajax":{
-            "url": " "+base_url+"/EditStudyObject/getStudyObject",
+            "url": " "+base_back+"/EditStudyObject/getStudyObject",
             "dataSrc":""
         },
         "columns":[
@@ -80,7 +80,7 @@ function addStudyObjectModal(){
 function editStudyObjectModal(button){
     let idStudyObject = button.getAttribute('lr');
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+'EditStudyObject/getStudyObjectById/' + idStudyObject;
+    let ajaxUrl = base_back+'EditStudyObject/getStudyObjectById/' + idStudyObject;
     request.open("GET", ajaxUrl, true);
     request.send();
 
@@ -102,7 +102,7 @@ function editStudyObjectModal(button){
 
 function postPutExecution(url, dataFormLR, modalName, formModal){
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+url;
+    let ajaxUrl = base_back+url;
     let formData = new FormData(dataFormLR);
     request.open('POST', ajaxUrl, true);
         request.send(formData);
@@ -123,7 +123,7 @@ function postPutExecution(url, dataFormLR, modalName, formModal){
 
 function deleteExecution(url){
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    let ajaxUrl = base_url+url;
+    let ajaxUrl = base_back+url;
     request.open('POST', ajaxUrl, true);
         request.send();
         request.onreadystatechange = function(){
