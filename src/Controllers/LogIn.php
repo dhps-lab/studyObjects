@@ -7,7 +7,10 @@
         public function validatePassword(){
             $data = "";
             if(!isset($_POST['user']) || !isset($_POST['password'])){
-                $arrResponse = array('status' => false, 'msg' => 'Usuario o contraseña erroneos');
+                $arrResponse = array(
+                    'status' => false, 
+                    'msg' => 'Usuario o contraseña erroneos'
+                );
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 return $arrResponse;
             }
@@ -19,7 +22,11 @@
                 echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
                 return $arrResponse;
             }
-            $arrResponse = array('status' => True, 'msg' => 'Usuario y contraseña correctos');
+            $arrResponse = array(
+                'status' => True, 
+                'msg' => 'Usuario y contraseña correctos',
+                'token' => $this->generateTokenUser($data['usuario_id'],$data['usuario_rol'])
+            );
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
             return $arrResponse;
         }
@@ -32,8 +39,15 @@
             $data = $this->model->getUserDisplayName($user);
         }
 
-        public function isConnectedUser($user){
-            
+        public function generateTokenUser($userId, $usuario_rol){
+            $header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);
+            $payload = json_encode(['user_id' => $userId, 'user_rol' => $usuario_rol]);
+            $base64UrlHeader = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($header));
+            $base64UrlPayload = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($payload));
+            $signature = hash_hmac('sha256', $base64UrlHeader . "." . $base64UrlPayload, 'abC123!', true);
+            $base64UrlSignature = str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($signature));
+            $jwt = $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
+            return $jwt;
         }
     }
 ?>
