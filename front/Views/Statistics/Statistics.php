@@ -124,216 +124,248 @@
         })
     });
 
-    Highcharts.chart('SO_component', {
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-        title: {
-            text: 'Objetos de estudio asignados por componente'
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        accessibility: {
-            point: {
-                valueSuffix: '%'
-            }
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    connectorColor: 'silver'
+    
+    function SO_component(data) {
+        data = data.map(function (obj) {
+            let item ={};
+            item.name = obj.nombre;
+            item.y = parseInt(obj.amount);
+            return item;
+        });
+        Highcharts.chart('SO_component', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Objetos de estudio asignados por componente'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
                 }
-            }
-        },
-        series: [{
-            name: 'Objetos de estudio',
-            data: [
-                <?php foreach($data['study_object_component'] as $value){
-                    echo "{name:'".$value['nombre']."',y:".$value['amount']."},";
-                } ?>
-            ]
-        }]
-    });
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        connectorColor: 'silver'
+                    }
+                }
+            },
+            series: [{
+                name: 'Objetos de estudio',
+                data: data
+            }]
+        });
+    }
+    getStatisticWithFunction('studyObjectComponent', SO_component);
 
 </script>
 
 <script>
         // Set up the chart
-    Highcharts.chart('container', {
-        chart: {
-            type: 'funnel3d',
-            options3d: {
-                enabled: true,
-                alpha: 10,
-                depth: 50,
-                viewDistance: 50
-            }
-        },
-        title: {
-            text: 'Asignaturas por componente'
-        },
-        accessibility: {
-            screenReaderSection: {
-                beforeChartFormat: '<{headingTagName}>{chartTitle}</{headingTagName}><div>{typeDescription}</div><div>{chartSubtitle}</div><div>{chartLongdesc}</div>'
-            }
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
+
+    function subject_component(data){
+        data = data.map(function (obj) {
+            let item =[obj.nombre, parseInt(obj.amount)];
+            //item[obj.nombre] = parseInt(obj.amount);
+            return item;
+        });
+        Highcharts.chart('container', {
+            chart: {
+                type: 'funnel3d',
+                options3d: {
                     enabled: true,
-                    format: '<b>{point.name}</b> ({point.y:,.0f})',
-                    allowOverlap: true,
-                    y: 10
-                },
-                neckWidth: '30%',
-                neckHeight: '25%',
-                width: '80%',
-                height: '80%'
-            }
-        },
-        series: [{
-            name: 'Asignaturas',
-            data: [
-                <?php foreach($data['subject_component'] as $value){
-                    echo "['".$value['nombre']."',".$value['amount']."],";
-                } ?>
-            ]
-        }]
-    });
+                    alpha: 10,
+                    depth: 50,
+                    viewDistance: 50
+                }
+            },
+            title: {
+                text: 'Asignaturas por componente'
+            },
+            accessibility: {
+                screenReaderSection: {
+                    beforeChartFormat: '<{headingTagName}>{chartTitle}</{headingTagName}><div>{typeDescription}</div><div>{chartSubtitle}</div><div>{chartLongdesc}</div>'
+                }
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b> ({point.y:,.0f})',
+                        allowOverlap: true,
+                        y: 10
+                    },
+                    neckWidth: '30%',
+                    neckHeight: '25%',
+                    width: '80%',
+                    height: '80%'
+                }
+            },
+            series: [{
+                name: 'Asignaturas',
+                data: data
+            }]
+        });
+    }
+    getStatisticWithFunction('subjectComponent', subject_component);
 </script>
 
 <script>
-    Highcharts.chart('SO_teacher_subject', {
-        chart: {
-            type: 'spline'
-        },
-        title: {
-            text: 'Resultados de aprendizaje - Docentes y Asignaturas'
-        },
-        xAxis: {
-            categories: [<?php foreach($data['study_object_teacher_subject'] as $value){
-                        echo "'".$value['descripcion']."',";
-                    } ?>]
-        },
-        yAxis: {
+    function study_object_teacher_subject(arrData){
+        let study_object_teacher_subject = arrData;
+        let description = study_object_teacher_subject.map(obj =>{
+            return obj.descripcion;
+        });
+        let amount_subject = study_object_teacher_subject.map(obj =>{
+            return parseInt(obj.amount_subject);
+        });
+        let amount_teacher = study_object_teacher_subject.map(obj =>{
+            return parseInt(obj.amount_teacher);
+        });
+        Highcharts.chart('SO_teacher_subject', {
+            chart: {
+                type: 'spline'
+            },
             title: {
-                text: 'Cantidad'
-            }
-        },
-        tooltip: {
-            crosshairs: true,
-            shared: true
-        },
-        plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
+                text: 'Objetos de estudio - Docentes y Asignaturas'
+            },
+            xAxis: {
+                categories: description
+            },
+            yAxis: {
+                title: {
+                    text: 'Cantidad'
+                }
+            },
+            tooltip: {
+                crosshairs: true,
+                shared: true
+            },
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    cursor: 'pointer'
+                }
+            },
+            series: [{
+                name: 'Espacios académicos',
+                marker: {
+                    symbol: 'square'
                 },
-                cursor: 'pointer'
-            }
-        },
-        series: [{
-            name: 'Espacios académicos',
-            marker: {
-                symbol: 'square'
-            },
-            data: [<?php foreach($data['study_object_teacher_subject'] as $value){
-                        echo $value['amount_subject'].",";
-                    } ?>]
-
-        }, {
-            name: 'Docentes',
-            marker: {
-                symbol: 'diamond'
-            },
-            data: [<?php foreach($data['study_object_teacher_subject'] as $value){
-                        echo $value['amount_teacher'].",";
-                    } ?>]
-        }]
-    });
+                data: amount_subject
+    
+            }, {
+                name: 'Docentes',
+                marker: {
+                    symbol: 'diamond'
+                },
+                data: amount_teacher
+            }]
+        });
+    }
+    getStatisticWithFunction('studyObjectTeacherSubject', study_object_teacher_subject);
 
 </script>
 
 <script>
         // Data retrieved from https://gs.statcounter.com/browser-market-share#monthly-202201-202201-bar
     // Create the chart
-    Highcharts.chart('SO_component_subject', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            align: 'left',
-            text: 'Objetos de estudio asignados, distribuidos en componentes y asignaturas'
-        },
-        accessibility: {
-            announceNewData: {
-                enabled: true
-            }
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
+    function study_object_component(data){
+        let study_object_component = data[0].map(obj =>{
+            return {name: obj.nombre, y: parseInt(obj.amount), drilldown: obj.nombre};
+        });
+        let study_object_subject_component =[];
+        for (const key in data[0]) {
+            const component = data[0][key];
+            let filter = data[1].filter(obj =>{
+                return obj.compo === component.nombre;
+            });
+            filter = filter.map(obj=>{
+                return [obj.nombre,parseInt(obj.amount)];
+            });
+            study_object_subject_component.push({name: component.nombre, id: component.nombre, data: filter});
+        }
+        Highcharts.chart('SO_component_subject', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Total objetos de estudio'
-            }
-
-        },
-        legend: {
-            enabled: false
-        },
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y}'
-                }
-            }
-        },
-
-        tooltip: {
-            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
-        },
-
-        series: [
-            {
-                name: "Browsers",
-                colorByPoint: true,
-                data: [
-                    <?php foreach($data['study_object_component'] as $value){
-                        echo "{name:'".$value['nombre']."',y:".$value['amount'].",drilldown: '".$value['nombre']."'},";
-                    } ?>
-                ]
-            }
-        ],
-        drilldown: {
-            breadcrumbs: {
-                position: {
-                    align: 'right'
+                align: 'left',
+                text: 'Objetos de estudio asignados, distribuidos en componentes y asignaturas'
+            },
+            accessibility: {
+                announceNewData: {
+                    enabled: true
                 }
             },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total objetos de estudio'
+                }
+    
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                }
+            },
+    
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+            },
+    
             series: [
-                    <?php foreach($data['study_object_component'] as $value){
-                        echo "{name:'".$value['nombre']."',id:'".$value['nombre']."', data:[";
-                        foreach($data['study_object_subject_component'] as $key=>$valueComp){
-                            if($valueComp['compo'] == $value['nombre']){
-                                echo "['".$valueComp['nombre']."',".$valueComp['amount']."],";
+                {
+                    name: "Browsers",
+                    colorByPoint: true,
+                    data: study_object_component
+                }
+            ],
+            drilldown: {
+                breadcrumbs: {
+                    position: {
+                        align: 'right'
+                    }
+                },
+                series: study_object_subject_component
+                        <?php /*foreach($data['study_object_component'] as $value){
+                            echo "{name:'".$value['nombre']."',id:'".$value['nombre']."', data:[";
+                            foreach($data['study_object_subject_component'] as $key=>$valueComp){
+                                if($valueComp['compo'] == $value['nombre']){
+                                    echo "['".$valueComp['nombre']."',".$valueComp['amount']."],";
+                                }
                             }
-                        }
-                        echo "]},";
-                    } ?>
-            ]
-        }
-    });
+                            echo "]},";*/
+                        //} ?>
+                
+            }
+        });
+    }
+    let arrMethods = new Array('studyObjectComponent','studyObjectSubjectComponent');
+    getStatisticWithFunctionMultipleParams(arrMethods, study_object_component);
 </script>
 
