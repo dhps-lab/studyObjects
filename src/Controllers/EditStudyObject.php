@@ -63,7 +63,7 @@
             if($arrData > 0){
                 $arrResponse = array('status' => true, 'msg' => 'Datos procesados correctamente.');
             } else if($arrData == 'exist'){
-                $arrResponse = array('status' => false, 'msg' => '¡Advertencia! El resultado de aprendizaje ya existe.');
+                $arrResponse = array('status' => false, 'msg' => '¡Advertencia! El objeto de estudio ya existe.');
             } else {
                 $arrResponse = array('status' => false, 'msg' => 'No es posible almacenar los datos.');
             }
@@ -88,7 +88,7 @@
             if (empty($arrData)){
                 $arrResponse = array('status' => false, 'msg' => 'No es poisble eliminar los datos.');
             } else {
-                $arrResponse = array('status' => true, 'msg' => 'El resultado de aprendizaje ha sido eliminado');
+                $arrResponse = array('status' => true, 'msg' => 'El objeto de estudio ha sido eliminado');
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 

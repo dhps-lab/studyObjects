@@ -10,7 +10,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-secondary shadow">
                         <div class="inner">
-                            <h3><?= $data['amount_study_object'];?></h3>
+                            <h3 id="StudyObject"></h3>
                             <p>Objetos de estudio</p>
                         </div>
                         <div class="icon">
@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success shadow">
                         <div class="inner">
-                            <h3><?= $data['amount_subject'];?></h3>
+                            <h3 id="Subject"></h3>
                             <p>Espacios académicos</p>
                         </div>
                         <div class="icon">
@@ -32,7 +32,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger shadow">
                         <div class="inner">
-                            <h3><?= $data['amount_teacher'];?></h3>
+                            <h3 id="Teacher" ></h3>
                             <p>Docentes</p>
                         </div>
                         <div class="icon">
@@ -43,7 +43,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning shadow">
                         <div class="inner">
-                            <h3><?= $data['amount_assign_study_object'];?></h3>
+                            <h3 id="AssignStudyObject"></h3>
                             <p>Asignaciones</p>
                         </div>
                         <div class="icon">

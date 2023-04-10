@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var strUser = document.querySelector("#user").value;
         var strPass = document.querySelector("#password").value;
         if (strUser == "" || strPass == "") {
-            swal("Advertencia", "Todos los campos son oblicatorios", "error");
+            swal("Advertencia", "Todos los campos son obligatorios", "error");
             return false;
         }
         logInSubmit(dataFormLogIn, '#LogInModal', formLogIn);

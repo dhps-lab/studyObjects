@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var intTeacher = document.querySelector("#listTeacher").value;
         var intSubject = document.querySelector("#listSubject").value;
         if(intStudyObject == "" || intTeacher == "" || intSubject == ""){
-            swal("Advertencia", "Todos los campos son oblicatorios", "error");
+            swal("Advertencia", "Todos los campos son obligatorios", "error");
             return false;
         }
         postPutExecution('EditAssignStudyObject/postAssignStudyObject', dataFormAddAssignSO, '#addAssignStudyObjectModal', formAddAssingStudyObject);
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var intTeacher = document.querySelector("#listEditTeacher").value;
         var intSubject = document.querySelector("#listEditSubject").value;
         if(intCode == "" || intStudyObject == "" || intTeacher == "" || intSubject == ""){
-            swal("Advertencia", "Todos los campos son oblicatorios", "error");
+            swal("Advertencia", "Todos los campos son obligatorios", "error");
             return false;
         }
         postPutExecution('EditAssignStudyObject/putAssignStudyObject/' + intCode, dataFormEditAssignSO, '#editAssignStudyObjectModal', formEditAssingStudyObject);

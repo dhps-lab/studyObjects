@@ -1,11 +1,16 @@
 
+document.addEventListener('DOMContentLoaded', function(){
+    getStatisticAmount('StudyObject', document.getElementById("StudyObject"));
+    getStatisticAmount('Subject', document.getElementById("Subject"));
+    getStatisticAmount('Teacher', document.getElementById("Teacher"));
+    getStatisticAmount('AssignStudyObject', document.getElementById("AssignStudyObject"));
+});
 
-
-function getStatistic(method, variable) {
+function getStatisticAmount(method, element) {
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_back + 'Statistics/methodStatistic/';
     let formData = new FormData();
-    let dataResponse = '';
+    method = 'amount' + method;
     formData.append('method', method);
     request.open('POST', ajaxUrl, true);
     request.send(formData);
@@ -13,7 +18,7 @@ function getStatistic(method, variable) {
         if (request.readyState == 4 && request.status == 200) {
             let objData = JSON.parse(request.responseText);
             console.log(objData);
-            variable = objData.data;
+            element.innerHTML = objData.data;
         }
     };
 }

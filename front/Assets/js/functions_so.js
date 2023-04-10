@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var strName = document.querySelector("#txtNameAdd").value;
         var strDescription = document.querySelector("#txtDescriptionAdd").value;
         if(strName == "" || strDescription == ""){
-            swal("Advertencia", "Todos los campos son oblicatorios", "error");
+            swal("Advertencia", "Todos los campos son obligatorios", "error");
             return false;
         }
         postPutExecution('EditStudyObject/postStudyObject', dataFormAddLR, '#addStudyObjectModal', formAddStudyObject);
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var strName = document.querySelector("#txtNameEdit").value;
         var strDescription = document.querySelector("#txtDescriptionEdit").value;
         if(intCode == "" || strName == "" || strDescription == ""){
-            swal("Advertencia", "Todos los campos son oblicatorios", "error");
+            swal("Advertencia", "Todos los campos son obligatorios", "error");
             return false;
         }
         postPutExecution('EditStudyObject/putStudyObject/' + intCode, dataFormEditLR, '#editStudyObjectModal', formEditStudyObject);
