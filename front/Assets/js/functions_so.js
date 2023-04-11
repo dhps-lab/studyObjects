@@ -155,7 +155,7 @@ function deleteStudyObject(deleteButton){
         if(result){
             deleteExecution('EditStudyObject/deleteStudyObject/'+ code);
         } else {
-            swal("Cancelado", "El objeto de estudio esta ha salvo", "error");
+            swal("Cancelado", "El objeto de estudio esta a salvo", "error");
         }
         
     });

@@ -92,7 +92,7 @@
             if (empty($arrData)){
                 $arrResponse = array('status' => false, 'msg' => 'No es poisble eliminar los datos.');
             } else {
-                $arrResponse = array('status' => true, 'msg' => 'El objeto de estudio ha sido eliminado');
+                $arrResponse = array('status' => true, 'msg' => 'El objeto de estudio a sido eliminado');
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
 

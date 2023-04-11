@@ -162,7 +162,7 @@ function deleteAssignStudyObject(deleteButton){
         if(result){
             deleteExecution('EditAssignStudyObject/deleteAssignStudyObject/'+ code);
         } else {
-            swal("Cancelado", "El objeto de estudio esta ha salvo", "error");
+            swal("Cancelado", "El objeto de estudio esta a salvo", "error");
         }
         
     });
